@@ -19,30 +19,39 @@ let beats = {
     "65": {
       
         beat: new Beat("./assets/Piano Chord 331.mp3"),
+        button: new Button("#00fffe", 65)
     },
     "83": {
         beat: new Beat("./assets/Piano Chord 209.mp3"),
+        button: new Button("#f50ffe", 83)
     },
     "68": {
         beat: new Beat("./assets/Piano Chord 208.mp3"),
+        button: new Button('#456736', 68)
     },
     "70": {
         beat: new Beat("./assets/Drum Sticks Hit 3.mp3"),
+        button: new Button('#FF00FF', 70)
     },
     "71": {
         beat: new Beat("./assets/Drum Snare Roll.mp3"),
+        button: new Button('#123290', 71)
     },
     "72": {
         beat: new Beat("./assets/PREL Musical 57.mp3"),
+        button: new Button('#897606', 72)
     },
     "74": {
         beat: new Beat("./assets/Cymbal Suspended 2.mp3"),
+        button: new Button('#654302', 74)
     },
     "75": {
         beat: new Beat("./assets/Musical Compos 33.mp3"),
+        button: new Button('#564930', 75)
     },
     "76": {
         beat: new Beat("./assets/Musical Orches 4.mp3"),
+        button: new Button('#2132132', 76)
     }
 }
 
@@ -51,7 +60,14 @@ let beats = {
  * HINT: use the keyCode
  */
 triggerBeat = (event) => {
-
+    let keyCode = event.keyCode;
+    if(keyCode in beats){
+        console.log('it`s working');
+        let keypress = beats[keyCode];
+         keypress.beat.play();
+         keypress.button.select();
+       
+    }
 }
 
 
@@ -59,7 +75,4 @@ triggerBeat = (event) => {
  * Keydown listener to fire triggerBeat function
  * HINT: Log the keyCode of the key
  */
-document.addEventListener('keydown',(e) =>{
-    console.log(e);
-    console.log(e.keycode)
-})
+document.addEventListener('keydown', (triggerBeat))

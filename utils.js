@@ -4,6 +4,15 @@
  * HINT: Create a play function to play the audio if called 
  */
 class Beat {
+    constructor(audioSrc){
+        this.audio = new Audio(audioSrc);
+        // console.log(this.audio);
+        // this.audio.play();
+    }
+    play = () => {
+        this.audio.cuurentTime = 0;  // for resetting the audio each time
+        this.audio.play()
+    }
 }
 
 
@@ -13,23 +22,44 @@ class Beat {
  */
 class Button {
     constructor(color, keyCode){
+        this.color = color,
+        this.keyCode = keyCode,
+        this.element = document.getElementById(keyCode);
+        this.setButtonColorInHTML();
+        this.setTransitionEndListener()
+        console.log(this.element)
+    }
+ //solutions   //remove style on keyup
+    //wait a certain Amount of time to remove the style
+    // animation -react on transitionend
+
+    setTransitionEndListener = () => {
+       this.element.addEventListener('transitionend', ()=>{
+           console.log('transition ended');
+           this.deselect();
+       })
     }
 
     /**
      * Set the button color based on color specified
      */
     setButtonColorInHTML = () => {
+        this.element.style.borderColor = this.color;
     }
 
     /**
      * Select function to set the background color and boxShadow
      */
     select = () => {
+        this.element.style.backgroundColor = this.color;
+        this.element.style.boxShadow = `0px 0px 17px 0px ${this.color}`
     }
 
     /**
      * Deselect function to reset background color and boxShadow
      */
     deselect = () => {
+        this.element.style.backgroundColor = 'transparent';
+        this.element.style.boxShadow = 'none';
     }
 }
